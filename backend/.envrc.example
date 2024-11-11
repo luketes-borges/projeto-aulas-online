@@ -1,0 +1,8 @@
+export SECRET_KEY=""
+
+export DJANGO_BD_TYPE="sql_server"
+export SQL_SERVER_NAME=""
+export SQL_SERVER_HOST=""
+export SQL_SERVER_PORT=""
+export SQL_SERVER_USER=""
+export SQL_SERVER_PASSWORD=""
