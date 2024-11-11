@@ -123,6 +123,17 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(request.user)
         return Response(serializer.data)
 
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
+
+    def perform_update(self, serializer):
+        serializer.save()
+
 
 class InstrutorDashboardViewSet(viewsets.ViewSet):
     permission_classes = [IsInstrutor]

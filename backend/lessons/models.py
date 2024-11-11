@@ -4,6 +4,14 @@ from django.contrib.auth.models import User
 class Perfil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='perfil')
     foto_perfil = models.ImageField(upload_to='fotos_perfil/', blank=True, null=True)
+    # first_name = models.CharField(max_length=30, blank=True)
+    # last_name = models.CharField(max_length=30, blank=True)
+    # email = models.EmailField(blank=True)
+
+    def get_foto_perfil(self):
+        if self.foto_perfil:
+            return self.foto_perfil.url
+        return None
 
     def __str__(self):
         return f"Perfil de {self.user.username}"

@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name']
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'perfil']
 
 
 class PerfilSerializer(serializers.ModelSerializer):
@@ -14,7 +14,8 @@ class PerfilSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Perfil
-        fields = ['id', 'user', 'foto_perfil']
+        fields = ['id', 'user', 'foto_perfil', 'first_name', 'last_name', 'email']
+        read_only_fields = ['id', 'user']
 
     def update(self, instance, validated_data):
         user_data = validated_data.pop('user', {})
