@@ -4,21 +4,23 @@ from django.contrib.auth.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
+    foto_perfil = serializers.CharField(source="perfil.foto_perfil", read_only=True)
+
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'perfil']
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'perfil', 'foto_perfil']
 
 
 class PerfilSerializer(serializers.ModelSerializer):
-    user = UserSerializer()
+    # user = UserSerializer()
 
     class Meta:
         model = Perfil
-        fields = ['id', 'user', 'foto_perfil', 'first_name', 'last_name', 'email']
+        fields = ['id', 'user', 'foto_perfil']
         read_only_fields = ['id', 'user']
 
     def update(self, instance, validated_data):
-        user_data = validated_data.pop('user', {})
+        user_data = validated_data.pop('user', None)
         user = instance.user
 
         # Atualiza os dados do perfil

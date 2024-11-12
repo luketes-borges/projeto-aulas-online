@@ -7,6 +7,8 @@ from django_filters.rest_framework import DjangoFilterBackend
 from django.contrib.auth.models import User, Group
 from drf_yasg.utils import swagger_auto_schema
 from django.db.models import Prefetch, Count
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.views import APIView
 
 
 class IsInstrutor(permissions.BasePermission):
@@ -109,7 +111,8 @@ class ParticipanteViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated, IsAluno | IsAdministrador]
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(viewsets.ModelViewSet, APIView):
+    parser_classes = [MultiPartParser, FormParser]
     queryset = User.objects.all().prefetch_related('perfil')
     serializer_class = UserSerializer
 
