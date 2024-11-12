@@ -2,6 +2,14 @@
 
 Este projeto é uma aplicação web para gerenciamento de aulas online, com um backend em Django e um frontend em React com TypeScript.
 
+## Vídeo de Demonstração
+
+Veja o vídeo abaixo para mais detalhes sobre o projeto:
+
+[![Demonstração do Projeto](https://img.youtube.com/vi/cx-fGsjWJJI/0.jpg)](https://www.youtube.com/watch?v=cx-fGsjWJJI)
+
+Clique no vídeo para assistir à demonstração.
+
 ## Como Executar o Projeto
 
 ### Pré-requisitos
