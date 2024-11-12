@@ -4,5 +4,5 @@ export interface User {
   email: string;
   first_name: string;
   last_name: string;
-  get_foto_perfil: string;
+  foto_perfil: string;
 }

@@ -54,8 +54,8 @@ const Aulas: React.FC = () => {
               <td data-label="Total de Participantes">{aula.total_participantes}</td>
               {token && (
                 <td data-label="Ações" className="action-buttons">
-                  <Link to={`/aulas/${aula.id}/editar`} className="btn-link btn-primary">Editar</Link>
-                  <Button variant="danger" className="btn-danger" onClick={() => handleDelete(aula.id)}>
+                  <Button href={`/aulas/${aula.id}/editar`} className="btn-primary">Editar</Button>
+                  <Button className="btn-danger" onClick={() => handleDelete(aula.id)}>
                     Excluir
                   </Button>
                 </td>

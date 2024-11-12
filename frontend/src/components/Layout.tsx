@@ -26,7 +26,7 @@ const Layout: React.FC = () => {
       if (token) {
         try {
           const response = await api.get("/users/me/");
-          setUser(response.data.user);
+          setUser(response.data);
         } catch (error) {
           console.error("Erro ao buscar dados do usuário:", error);
         }
@@ -39,7 +39,7 @@ const Layout: React.FC = () => {
   return (
     <div>
       {token && user && (
-        <Navbar bg="dark" variant="dark" expand="lg">
+        <Navbar>
           <Container>
             <Navbar.Brand href="/">Aulas Online</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />

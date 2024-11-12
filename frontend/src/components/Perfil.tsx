@@ -21,7 +21,7 @@ const Perfil: React.FC = () => {
 
       api.get<User>(`users/${userId}/`).then((response) => {
         setUser(response.data);
-        setPerfilImage(response.data.get_foto_perfil);
+        setPerfilImage(response.data.foto_perfil);
         setFirstName(response.data.first_name);
         setLastName(response.data.last_name);
         setEmail(response.data.email);
@@ -39,7 +39,6 @@ const Perfil: React.FC = () => {
     event.preventDefault();
     if (user) {
       const formData = new FormData();
-      formData.append("get_foto_perfil", perfilImage)
       formData.append("first_name", firstName);
       formData.append("last_name", lastName);
       formData.append("email", email);
@@ -50,7 +49,7 @@ const Perfil: React.FC = () => {
           console.error("Formato de arquivo não suportado. Por favor, envie uma imagem JPG ou PNG.");
           return;
         }
-        formData.append("get_foto_perfil", selectedFile);
+        formData.append("foto_perfil", selectedFile);
       }
 
       try {
@@ -59,6 +58,7 @@ const Perfil: React.FC = () => {
             "Content-Type": "multipart/form-data",
           },
         });
+
         setUser(response.data);
         console.log("Perfil atualizado:", response.data);
         setIsEditing(false); // Desativa o modo de edição após salvar
@@ -86,6 +86,14 @@ const Perfil: React.FC = () => {
   return (
     <div className="perfil-container">
       <h2>Perfil</h2>
+      {perfilImage && (
+        <img
+          src={perfilImage}
+          alt="Foto de Perfil"
+          className="perfil-photo-preview"
+        />
+      )}
+
       {user && (
         <Form onSubmit={handleSubmit}>
           <div className="perfil-details">
@@ -119,14 +127,6 @@ const Perfil: React.FC = () => {
               />
             </Form.Group>
           </div>
-
-          {user.get_foto_perfil && (
-            <img
-              src={user.get_foto_perfil}
-              alt="Foto de Perfil"
-              className="perfil-photo-preview"
-            />
-          )}
 
           {isEditing && (
             <Form.Group controlId="formFile" className="mb-3">
