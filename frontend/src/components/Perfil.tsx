@@ -19,7 +19,7 @@ const Perfil: React.FC = () => {
     if (token) {
       const userId = 1; // Aqui, busque o ID real do usuário com base no token
 
-      api.get<User>(`users/${userId}/`).then((response) => {
+      api.get<User>(`/users/me/`).then((response) => {
         setUser(response.data);
         setPerfilImage(response.data.foto_perfil);
         setFirstName(response.data.first_name);
@@ -53,7 +53,7 @@ const Perfil: React.FC = () => {
       }
 
       try {
-        const response = await api.patch(`users/${user.id}/`, formData, {
+        const response = await api.patch(`users/me/`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
