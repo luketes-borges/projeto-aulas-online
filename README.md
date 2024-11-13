@@ -152,7 +152,7 @@ Clique na imagem abaixo para assistir à demonstração do projeto:
 
 - Para rodar os testes do backend:
   ```bash
-  pytest backend/tests/
+  pytest lessons/tests/
   ```
 
 ---
